@@ -6,7 +6,13 @@ import {HomeComponent} from './home/home.component';
 import {FrontendLayoutComponent} from '../layouts/frontend-layout';
 // app components
 import {AppHeaderComponent, AppFooterComponent, AppNavbarComponent} from '../components/frontend/';
-import {BsDropdownModule, CollapseModule} from 'ngx-bootstrap';
+import {BsDropdownModule, CollapseModule, TabsModule} from 'ngx-bootstrap';
+import { BannerComponent } from './home/banner/banner.component';
+import { ProcessComponent } from './home/process/process.component';
+import {SlideshowModule} from 'ng-simple-slideshow';
+import { WidgetComponent } from './home/widget/widget.component';
+import { ProductBlockComponent } from './home/widget/product-block/product-block.component';
+import { BlogBlockComponent } from './home/widget/blog-block/blog-block.component';
 
 const APP_COMPONENTS = [
     AppHeaderComponent,
@@ -18,13 +24,20 @@ const APP_COMPONENTS = [
     imports: [
         CommonModule,
         FrontendRoutingModule,
+        SlideshowModule,
         CollapseModule.forRoot(),
-        BsDropdownModule.forRoot()
+        BsDropdownModule.forRoot(),
+        TabsModule.forRoot()
     ],
     declarations: [
         ...APP_COMPONENTS,
         HomeComponent,
-        FrontendLayoutComponent
+        FrontendLayoutComponent,
+        BannerComponent,
+        ProcessComponent,
+        WidgetComponent,
+        ProductBlockComponent,
+        BlogBlockComponent
     ]
 })
 export class FrontendModule {

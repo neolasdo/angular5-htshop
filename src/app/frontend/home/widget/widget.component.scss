@@ -1,0 +1,33 @@
+.widget{
+  margin-bottom: 40px;
+  tabset{
+    ::ng-deep{
+      ul.nav-tabs{
+        margin-bottom: 40px !important;
+        border: none;
+        background: #253036;
+        border: 1px solid #253036;
+        li.nav-item{
+          margin: 0;
+          a{
+            color: #fff;
+            border-radius: 0;
+          }
+          &.active{
+            a{
+              color: #253036;
+              background: #fff;
+            }
+          }
+        }
+      }
+      .tab-content{
+        border: none !important;
+        tab {
+          padding: 0;
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}

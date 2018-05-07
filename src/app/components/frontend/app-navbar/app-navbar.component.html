@@ -1,40 +1,47 @@
-<nav class="navigation navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <div class="navbar-header" id="collapse-h">
       <button type="button" class="navbar-toggle collapsed" (click)="isCollapsed = !isCollapsed" aria-expanded="false">
-        <span class="sr-only">Menu</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+          <span class="navbar-toggler-icon"></span>
       </button>
     </div>
-    <div class="shop-category nav navbar-nav navbar-left">
-      <!-- Single button -->
-      <div class="btn-group">
-        <button type="button" class="btn btn-shop-category dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01" [collapse]=isCollapsed>
+      <div class="btn-group dropdown category-btn" dropdown placement="bottom right">
+        <button type="button" class="btn btn-shop-category dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="false" dropdownToggle>
           Shop By Category <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu">
-          <li><a href="">Men</a></li>
-          <li><a href="">Women</a></li>
-          <li><a href="">Kids</a></li>
-          <li role="separator" class="divider"></li>
-          <li><a href="">Leather</a></li>
-          <li><a href="">Electronics</a></li>
+        <ul class="dropdown-menu"  *dropdownMenu aria-labelledby="simple-dropdown">
+          <li class="dropdown-item"><a href="">Men</a></li>
+          <li class="dropdown-item"><a href="">Women</a></li>
+          <li class="dropdown-item"><a href="">Kids</a></li>
+          <!--<li role="separator" class="divider dropdown-item"></li>-->
+          <li class="dropdown-item"><a href="">Leather</a></li>
+          <li class="dropdown-item"><a href="">Electronics</a></li>
         </ul>
       </div>
-    </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" [collapse]=isCollapsed>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Shortcode</a></li>
-        <li><a href="#">Features</a></li>
-        <li><a href="#">Media</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Contact Us</a></li>
+      <ul class="navbar-nav navbar-right main-navigation mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Shortcode</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Media</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact Us</a>
+          </li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    </div>
+  </div>
 </nav>

@@ -1,0 +1,17 @@
+<slideshow
+        (onSwipeLeft)="swipeLeft()"
+        (onSwipeRight)="swipeRight()"
+        [height]="'350px'"
+        [minHeight]="'200px'"
+        [autoPlay]="false"
+        [showArrows]="true"
+        [autoPlayInterval]="2000"
+        [stopAutoPlayOnSlide]="true"
+        [showDots]="true"
+        [dotColor]="'#fff'"
+        [showCaptions]="true"
+        [captionColor]="'#FFFFFF'"
+        [imageUrls]="imageSources"
+        [lazyLoad]="imageSources?.length > 1"
+        [autoPlayWaitForLazyLoad]="true">
+</slideshow>
