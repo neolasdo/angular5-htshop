@@ -30,4 +30,31 @@
       }
     }
   }
+  .blog-title {
+    background: #253036;
+    height: 45px;
+    margin: 0px 15px 30px;
+    padding: 2px 0;
+    font-family: 'raleway', sans-serif;
+    h2,a {
+      color: #fff;
+      text-transform: uppercase;
+      margin: 0px;
+      padding: 0px;
+      font-weight: 600;
+    }
+    h2 {
+      padding: 0;
+      line-height: 45px;
+      vertical-align: middle;
+      font-size: 15pt
+    }
+    a {
+      padding: 10px 0px;
+      font-size: 10pt;
+      &:hover {
+        color: #666;
+      }
+    }
+  }
 }
