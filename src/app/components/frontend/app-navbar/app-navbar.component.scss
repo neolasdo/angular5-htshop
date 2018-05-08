@@ -1,14 +1,29 @@
-
-.navigation {
-  background: #40bea7;
-  nav {
-    border: none;
+.navbar.navbar-expand-lg.navbar-dark.bg-dark{
+  height: 55px;
+  padding: 0;
+  .container{
+    height: 100%;
+    #navbarTogglerDemo01{
+      height: 100%;
+      ul{
+        height: 100%;
+        li{
+          height: 100%;
+        }
+      }
+    }
   }
 }
-#navbar ul li a {
+nav {
+  border: none;
+}
+ul.main-navigation li a {
+  height: 100%;
+  text-align: center;
+  line-height: 55px;
   color: #ffffff;
   text-transform: uppercase;
-  padding: 25px 10px;
+  padding: 0px 20px;
   &:hover {
     background: #fff;
     color: #2f2f2f;
