@@ -24,6 +24,14 @@
 }
 .product-description {
   background: #253036;
+  a{
+    color: #ffffff;
+    padding-top: 20px;
+    &:hover{
+      color: #f0f3f5;
+      text-decoration: none;
+    }
+  }
 }
 .product-description p {
   margin: 0px;

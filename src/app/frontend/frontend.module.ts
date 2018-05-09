@@ -13,6 +13,12 @@ import {SlideshowModule} from 'ng-simple-slideshow';
 import { WidgetComponent } from './home/widget/widget.component';
 import { ProductBlockComponent } from './home/widget/product-block/product-block.component';
 import { BlogBlockComponent } from './home/widget/blog-block/blog-block.component';
+import { SingleProductComponent } from './single-product/single-product.component';
+import { SingleProductTabsComponent } from './single-product/single-product-tabs/single-product-tabs.component';
+import {SingleProductInformationComponent} from './single-product/single-product-information/single-product-information.component';
+import { BlogComponent } from './blog/blog.component';
+import { PostComponent } from './post/post.component';
+import { CategoryComponent } from './category/category.component';
 
 const APP_COMPONENTS = [
     AppHeaderComponent,
@@ -37,7 +43,13 @@ const APP_COMPONENTS = [
         ProcessComponent,
         WidgetComponent,
         ProductBlockComponent,
-        BlogBlockComponent
+        BlogBlockComponent,
+        SingleProductComponent,
+        SingleProductTabsComponent,
+        SingleProductInformationComponent,
+        BlogComponent,
+        PostComponent,
+        CategoryComponent
     ]
 })
 export class FrontendModule {

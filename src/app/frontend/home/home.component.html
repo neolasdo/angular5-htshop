@@ -1,5 +1,97 @@
 <app-banner></app-banner>
 <app-process></app-process>
-<app-widget [widgetType]="'product'"></app-widget>
-<app-widget [widgetType]="'product'"></app-widget>
-<app-widget [widgetType]="'blog'"></app-widget>
+<app-widget>
+    <tabset>
+        <tab heading="Trending Item">
+            <div  class="row">
+                <div class="col-md-3 col-sm-4">
+                    <app-product-block></app-product-block>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <app-product-block></app-product-block>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <app-product-block></app-product-block>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <app-product-block></app-product-block>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <app-product-block></app-product-block>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <app-product-block></app-product-block>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <app-product-block></app-product-block>
+                </div>
+            </div>
+        </tab>
+        <tab heading="Best seller">
+            <div  class="row">
+                <div class="col-md-3 col-sm-4">
+                    <app-product-block></app-product-block>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <app-product-block></app-product-block>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <app-product-block></app-product-block>
+                </div>
+            </div>
+        </tab>
+    </tabset>
+</app-widget>
+<app-widget>
+    <tabset>
+        <tab heading="Trending Item">
+            <div  class="row">
+                <div class="col-md-3 col-sm-4">
+                    <app-product-block></app-product-block>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <app-product-block></app-product-block>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <app-product-block></app-product-block>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <app-product-block></app-product-block>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <app-product-block></app-product-block>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <app-product-block></app-product-block>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <app-product-block></app-product-block>
+                </div>
+            </div>
+        </tab>
+        <tab heading="Best seller">
+            <div  class="row">
+                <div class="col-md-3 col-sm-4">
+                    <app-product-block></app-product-block>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <app-product-block></app-product-block>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <app-product-block></app-product-block>
+                </div>
+            </div>
+        </tab>
+    </tabset>
+</app-widget>
+<app-widget>
+    <div class="blog-title col-xs-12">
+        <h2 class="pull-left text-left">From The Blog</h2>
+        <a href="" class="pull-right text-right">More Post <i class="fa fa-long-arrow-right"></i></a>
+    </div>
+    <div class="row blog-widget-content">
+        <div class="col-md-3 col-sm-4">
+            <app-blog-block></app-blog-block>
+        </div>
+    </div>
+</app-widget>
