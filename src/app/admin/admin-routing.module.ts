@@ -22,14 +22,16 @@ const routes: Routes = [
     {
         path: '',
         component: FullLayoutComponent,
-        data: {
-            title: 'Admin'
-        },
         children: [
-            {
-                path: 'dashboard',
-                loadChildren: './dashboard/dashboard.module#DashboardModule',
-            }
+            {path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule', },
+            {path: 'posts', loadChildren: './manage/posts/posts.module#PostsModule', },
+            {path: 'comments', loadChildren: './manage/comments/comments.module#CommentsModule', },
+            {path: 'media', loadChildren: './manage/media/media.module#MediaModule', },
+            {path: 'orders', loadChildren: './manage/orders/orders.module#OrdersModule', },
+            {path: 'categories', loadChildren: './manage/categories/categories.module#CategoriesModule', },
+            {path: 'products', loadChildren: './manage/products/products.module#ProductsModule', },
+            {path: 'customers', loadChildren: './manage/customers/customers.module#CustomersModule', },
+            {path: 'users', loadChildren: './manage/users/users.module#UsersModule', },
         ]
     },
 ];

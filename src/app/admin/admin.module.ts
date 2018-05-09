@@ -55,19 +55,18 @@ const APP_DIRECTIVES = [
     SIDEBAR_TOGGLE_DIRECTIVES
 ]
 
-
 @NgModule({
     imports: [
         CommonModule,
         AdminRoutingModule,
         BsDropdownModule.forRoot(),
         TabsModule.forRoot(),
-        ChartsModule
+        ChartsModule,
     ],
     declarations: [
         BACKEND_LAYOUT,
         ...APP_COMPONENTS,
-        ...APP_DIRECTIVES
+        ...APP_DIRECTIVES,
     ]
 })
 export class AdminModule {

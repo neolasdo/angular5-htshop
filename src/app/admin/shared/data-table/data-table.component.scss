@@ -1,0 +1,156 @@
+ngx-datatable {
+  border-radius: 5px;
+  background: #fff;
+  .edit-item {
+    cursor: pointer;
+  }
+  /*checkbox input*/
+  .check-item {
+    font-size: 16px;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    input {
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+      &:checked ~ .checkmark {
+        background-color: #E35E00;
+        border: 1px solid #E35E00;
+        &:after {
+          display: block;
+        }
+      }
+    }
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      height: 16px;
+      width: 16px;
+      background-color: #ffffff;
+      border: 1px solid #929292;
+      border-radius: 2px;
+      &:after {
+        content: "";
+        position: absolute;
+        display: none;
+        left: 4px;
+        top: 0px;
+        width: 6px;
+        height: 11px;
+        border: solid #fff;
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+    }
+    &:hover input ~ .checkmark {
+      background-color: #cccccc;
+    }
+  }
+
+  datatable-header .datatable-header-inner datatable-header-cell.datatable-header-cell {
+    height: 50px;
+    font-family: Rubik;
+    line-height: 50px !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 0.4px;
+    text-align: left;
+    color: #020b1c !important;
+  }
+
+  datatable-footer {
+    padding: 10px 0;
+    button.remove-all {
+      margin: 0 10px;
+      border-radius: 3px;
+      padding: 0.5rem 0.75rem;
+      font-size: 13px;
+      font-weight: 500;
+      background: #F5F6F8;
+      border: 1px solid #DBDCDE;
+      color: #121825;
+      &:hover {
+        background: #E8E8E9;
+        border: 1px solid #DBDCDE;
+        color: #FF4000;
+      }
+    }
+  }
+}
+.ngx-datatable .datatable-body .datatable-body-row {
+  min-height: 50px;
+}
+.ngx-datatable.material.striped{
+  box-shadow: 0px 2px 3.9px 0.1px rgba(0, 0, 0, 0.1);
+  .datatable-row-odd {
+    background: #f6f7f9 !important;
+  }
+}
+datatable-header-cell.datatable-header-cell.sortable.resizeable{
+  color: #020b1c;
+  width: 80px;
+  height: 11px;
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.4px;
+  text-align: left;
+}
+.ngx-datatable.material:not(.cell-selection) .datatable-body-row:hover, .ngx-datatable.material:not(.cell-selection) .datatable-body-row:hover .datatable-row-group{
+  background: #F5F6F8 !important;
+}
+.ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell{
+  height: 100%;
+}
+.datatable-body-cell-label {
+  font-family: Rubik;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: 0.4px;
+  text-align: left;
+  color: #020b1c;
+}
+datatable-header{
+  padding: 0px 20px !important;
+  width: 100% !important;
+  .datatable-header-inner{
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+datatable-body{
+  padding: 10px 20px !important;
+  width: 100% !important;
+  datatable-scroller{
+    width: 100% !important;
+    datatable-row-wrapper datatable-body-row{
+      width: 100% !important;
+    }
+
+  }
+}
+select.select-status{
+  border: none;
+  padding: 0 20px;
+  background: none;
+  &:focus {
+    border: none !important;
+    box-shadow: none;
+    background: none;
+  }
+}

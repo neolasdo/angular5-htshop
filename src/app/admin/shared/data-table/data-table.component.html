@@ -1,0 +1,85 @@
+<div class="animated fadeIn">
+  <app-filter-table *ngIf="showFilter" (filterArray)="updateFilter($event)" [canAdd]="canAdd"
+                    (createItem)="add($event)"></app-filter-table>
+
+  <ngx-datatable
+          class="material striped"
+          [rows]="data"
+          [columns]="columns"
+          [columnMode]="'force'"
+          [sortType]="'multi'"
+          [headerHeight]="50"
+          [footerHeight]="'auto'"
+          [rowHeight]="'auto'"
+          [scrollbarH]="true"
+          [limit]="limit"
+          (select)='onSelect($event)'
+          [selected]="selected"
+          [selectionType]="'checkbox'">
+    <ngx-datatable-column *ngIf="showCheckbox" [width]="30" [sortable]="false" [canAutoResize]="false"
+                          [draggable]="false"
+                          [resizeable]="false">
+      <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                   let-selectFn="selectFn">
+        <div class="check-item" style="margin-top: 17px">
+          <input type="checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"/>
+          <span class="checkmark"></span>
+        </div>
+      </ng-template>
+      <ng-template ngx-datatable-cell-template let-value="value" class="check-item" let-isSelected="isSelected"
+                   let-onCheckboxChangeFn="onCheckboxChangeFn">
+        <div class="check-item">
+          <input type="checkbox" [checked]="isSelected" (change)="onCheckboxChangeFn($event)"/>
+          <span class="checkmark"></span>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column *ngFor="let column of columns" [name]="column.name" [sortable]="true" [canAutoResize]="true" [draggable]="true" [resizeable]="true">
+      <ng-template ngx-datatable-header-template let-sort="sortFn">
+        <span>{{ column.label?column.label:column.name }}</span>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column *ngIf="canEdit" name="Manage" [width]="100" [sortable]="false" prop="id">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <div class="text-center">{{column.name}}</div>
+      </ng-template>
+      <ng-template ngx-datatable-cell-templatelet-row="row" let-row="row" let-value="value"
+                   ngx-datatable-cell-template>
+        <div class="text-center edit-item">
+          <span (click)="edit(row)" class="fa fa-edit fa-lg"></span>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-footer *ngIf="showFooter">
+      <ng-template
+              class="row"
+              ngx-datatable-footer-template
+              let-rowCount="rowCount"
+              let-pageSize="pageSize"
+              let-selectedCount="selectedCount"
+              let-curPage="curPage"
+              let-offset="offset">
+        <div class="col-md-6">
+          <button class="btn btn-default remove-all" (click)="removeAll()" *ngIf="canRemoveAll && showFooter">
+            Remove all
+          </button>
+          <span>Show {{ ((curPage-1) * limit )+ 1 }} to {{(curPage * limit <=data.length)? (curPage * limit): (data.length) }} of {{data.length}} entries</span>
+        </div>
+        <app-table-pager
+                class="col-md-6 text-right"
+                [pagerLeftArrowIcon]="'datatable-icon-left'"
+                [pagerRightArrowIcon]="'datatable-icon-right'"
+                [pagerPreviousIcon]="'datatable-icon-prev'"
+                [pagerNextIcon]="'datatable-icon-skip'"
+                [page]="curPage"
+                [size]="limit"
+                [count]="data.length"
+                [hidden]="!((data.length / pageSize) > 1)"
+                (change)="table.onFooterPage($event)">
+        </app-table-pager>
+      </ng-template>
+    </ngx-datatable-footer>
+  </ngx-datatable>
+</div>

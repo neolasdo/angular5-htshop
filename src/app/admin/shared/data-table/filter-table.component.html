@@ -1,0 +1,29 @@
+<div class="row filter-div">
+    <div class="col-md-3 show-items margin-bt">
+        Show &nbsp;
+        <div class="btn-group" dropdown>
+            <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle div-box">
+                {{filter.perPage}} <span class="caret"></span>
+            </button>
+            <ul *dropdownMenu class="dropdown-menu" role="menu">
+                <li role="menuitem"><span class="dropdown-item" href="#" (click)="setPerPage(5)">5</span></li>
+                <li role="menuitem"><span class="dropdown-item" href="#" (click)="setPerPage(10)">10</span></li>
+                <li role="menuitem"><span class="dropdown-item" href="#" (click)="setPerPage(20)">20</span></li>
+                <li role="menuitem"><span class="dropdown-item" href="#" (click)="setPerPage(50)">50</span>
+                </li>
+            </ul>
+        </div>
+        &nbsp;entries
+    </div>
+    <div class="col-md-7 search margin-bt">
+        <input type="text" class="form-control div-box" placeholder="Search" [(ngModel)]="filter.text"
+               (ngModelChange)="setFilter()">
+        <span class="fa fa-search"></span>
+    </div>
+    <div class="col-md-2 margin-bt" *ngIf="canAdd">
+        <button class="pull-right div-box" (click)="addItem()">
+            <span class="fa fa-plus add-new"></span>
+            Add
+        </button>
+    </div>
+</div>

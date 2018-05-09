@@ -1,0 +1,59 @@
+.filter-div{
+  font-family: "Myriad Pro", "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+}
+.div-box {
+  border-radius: 4px;
+  background-color: #fff;
+  height: 40px;
+  padding: 10px 20px;
+  border: solid 1px #e9ebed;
+  color: #5D6065;
+  box-shadow: 0px 2px 3.9px 0.1px rgba(0, 0, 0, 0.1);
+}
+
+.search {
+  position: relative;
+}
+
+.search input {
+  text-indent: 30px;
+  border: solid 1px #e9ebed;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 2.71;
+  letter-spacing: 0.4px;
+  text-align: left;
+  color: #6c727c;
+}
+
+.search .fa-search {
+  position: absolute;
+  top: 13px;
+  right: 32px;
+  color: #999;
+  font-size: 16px;
+}
+
+span.fa.fa-plus.add-new {
+  color: #d00;
+  padding-right: 12px;
+  font-size: 14px;
+}
+
+.show-items {
+  line-height: 40px;
+}
+
+li[role="menuitem"] {
+  line-height: 23px;
+}
+
+.show-items {
+  padding-left: 20px;
+}
+
+.margin-bt {
+  margin-bottom: 20px;
+}

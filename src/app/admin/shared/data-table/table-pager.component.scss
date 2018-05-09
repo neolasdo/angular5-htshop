@@ -1,0 +1,33 @@
+.pager{
+  list-style-type: none;
+  font-size: 14px;
+  margin: 0;
+  .page-link, button.remove-all {
+    background: #F5F6F8;
+    border: 1px solid #DBDCDE;
+    color: #121825;
+  }
+  .page-link{
+    height: 37px;
+  }
+
+  .page-item{
+    display: inline-block;
+    &:first-child .page-link {
+      margin-right: -3px;
+      border-bottom-left-radius: 3px;
+      border-top-left-radius: 3px;
+    }
+    &:last-child .page-link {
+      border-bottom-right-radius: 3px;
+      border-top-right-radius: 3px;
+      margin-left: -5px;
+    }
+  }
+
+  .page-link:hover, .pages.active .page-link {
+    background: #E8E8E9;
+    border: 1px solid #DBDCDE;
+    color: #FF4000;
+  }
+}
