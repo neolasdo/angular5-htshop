@@ -14,8 +14,8 @@ const routes: Routes = [
         data: {title: 'Sản phẩm'},
         children: [
             {path: 'list', component: ProductsListComponent, data: {title: 'Danh sách sản phẩm'}},
-            {path: 'add', component: ProductsFormComponent, data: {title: 'Thêm sản phẩm'}},
-            {path: 'edit/:id', component: ProductsFormComponent, data: {title: 'Sửa sản phẩm'}}
+            {path: 'add', component: ProductsFormComponent, data: {title: 'Thêm sản phẩm', role: 'add'}},
+            {path: 'edit/:id', component: ProductsFormComponent, data: {title: 'Sửa sản phẩm', role: 'edit'}}
         ]
     }
 ];

@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-products-list',
@@ -9,12 +10,13 @@ export class ProductsListComponent implements OnInit {
 
     rows = [];
     columns = [
-        {name: 'name', label: 'Tên khách hàng'},
-        {name: 'gender', label: 'Giới tính'},
-        {name: 'company', label: 'Công ty'},
+        {name: 'name', label: 'Tên sản phẩm'},
+        {name: 'price', label: 'Giá',  width: '100'},
+        {name: 'brand', label: 'Thương hiệu'},
+        {name: 'inStock', label: 'Số lượng', width: '100'},
     ];
 
-    constructor() {
+    constructor(private router: Router) {
     }
 
     ngOnInit() {
@@ -25,7 +27,7 @@ export class ProductsListComponent implements OnInit {
 
     fetch(cb) {
         const req = new XMLHttpRequest();
-        req.open('GET', `assets/data/company.json`);
+        req.open('GET', `assets/data/products.json`);
 
         req.onload = () => {
             cb(JSON.parse(req.response));
@@ -35,11 +37,11 @@ export class ProductsListComponent implements OnInit {
     }
 
     add(e) {
-        console.log(e)
+        this.router.navigate(['admin/products/add']);
     }
 
     edit(e) {
-        console.log(e)
+        this.router.navigate(['admin/products/edit', e.id]);
     }
 
     removeAll(e) {

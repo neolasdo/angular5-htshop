@@ -35,7 +35,7 @@
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column *ngFor="let column of columns" [name]="column.name" [sortable]="true" [canAutoResize]="true" [draggable]="true" [resizeable]="true">
+    <ngx-datatable-column *ngFor="let column of columns" [name]="column.name" [sortable]="true" [canAutoResize]="true" [width]="column.width" [draggable]="true" [resizeable]="true">
       <ng-template ngx-datatable-header-template let-sort="sortFn">
         <span>{{ column.label?column.label:column.name }}</span>
       </ng-template>
