@@ -1,0 +1,28 @@
+//danh sach api
+
+{
+	"path": "/products",
+	"method": "GET",
+	"detail": "danh sach products"	
+},
+{
+	"path": "/products",
+	"method": "POST",
+	"detail": "tao moi products"
+},
+
+{
+	"path": "/product/:id",
+	"method": "GET",
+	"detail": "thong tin product"
+},
+{
+	"path": "/product/:id",
+	"method": "PUT",
+	"detail": "sửa product"
+},
+{
+	"path": "/product/:id",
+	"method": "DELETE",
+	"detail": "xóa product"
+},

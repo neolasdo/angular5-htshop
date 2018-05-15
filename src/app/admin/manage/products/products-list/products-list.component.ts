@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {ApiService} from '../../../../shared';
+
+
 
 @Component({
     selector: 'app-products-list',
@@ -16,13 +19,21 @@ export class ProductsListComponent implements OnInit {
         {name: 'inStock', label: 'Số lượng', width: '100'},
     ];
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private apiService: ApiService) {
     }
 
     ngOnInit() {
+        let products;
+        this.apiService.get('/products')
+        .subscribe(
+            (res) => {products = res.data}, 
+            (err) => {console.log(err)}, 
+        )
         this.fetch((data) => {
             this.rows = data;
         });
+
+        console.log(products);
     }
 
     fetch(cb) {
