@@ -16,8 +16,8 @@ export class DataTableComponent implements OnInit, OnChanges {
     @Input() showStatus: Boolean = true;
     @Input() showFooter: Boolean = true;
     @Input() showFilter: Boolean = true;
-    @Input() showCheckbox: Boolean = true;
-    @Input() canRemoveAll: Boolean = true;
+    @Input() showCheckbox: Boolean = false;
+    @Input() canRemoveAll: Boolean = false;
     limit: Number = 10;
     data: Array<any> = this.rows;
     temp = [];
