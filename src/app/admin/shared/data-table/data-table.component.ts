@@ -19,7 +19,7 @@ export class DataTableComponent implements OnInit, OnChanges {
     @Input() showCheckbox: Boolean = false;
     @Input() canRemoveAll: Boolean = false;
     limit: Number = 10;
-    data: Array<any> = this.rows;
+    data: Array<any> = [];
     temp = [];
     selected = [];
     @Output() editItem = new EventEmitter<any>();
@@ -33,11 +33,11 @@ export class DataTableComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
+        this.data = this.rows;
     }
 
     ngOnChanges() {
         this.data = this.rows;
-        this.temp = [...this.rows]
     }
 
     onSelect({selected}) {

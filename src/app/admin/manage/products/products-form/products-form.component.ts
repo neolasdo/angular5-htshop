@@ -45,16 +45,28 @@ export class ProductsFormComponent implements OnInit {
         }
         else {
             this.method = 'PUT';
+            this.apiService.get(`/product/5afc3ad6fee0331098cfe857`)
+                .subscribe(
+                    (res) => {
+                        this.product = res.data;
+                    },
+                    (err) => {
+                        console.log(err)
+                    }    
+                )
             this.product = new ProductModel();
         }
     }
 
     addAttributes() {
-        this.product.attributes.push({});
+        this.product.attributes.push({ });
     }
 
+    removeAttribute(i) {
+        this.product.attributes.splice(i, 1);
+    }
     canAddAtributes() {
-        if (this.product.attributes.length) {
+        if (this.product.attributes && this.product.attributes.length) {
             this.product.attributes.forEach((item) => {
                 if (item && !item.hasOwnProperty('value')) {
                     return false;
@@ -67,21 +79,33 @@ export class ProductsFormComponent implements OnInit {
     onSubmit() {
         console.log(this.product);
         if (this.method === 'POST') {
-            this.apiService.post('/products', {product: this.product})
+            this.apiService.post('/product', {product: this.product})
                 .subscribe(
                     (res) => {
-                        this.toastr.success('Hello world!', 'Toastr fun!');
-                        this.router.navigate(['/admin/products/list']);
+                        this.toastr.success('Tạo sản phẩm thành công');
+                        setTimeout(() => {
+                            this.router.navigate(['/admin/products/list']);
+                        }, 1000)
                     },
                     (err) => {
                         console.log(err)
                     },
                 )
-        }
-        ;
+        };
         if (this.method === 'PUT') {
-        }
-        ;
+            this.apiService.put(`/product/${this.product._id}`, {product: this.product})
+                .subscribe(
+                    (res) => {
+                        this.toastr.success('Đã cập nhật sản phẩm');
+                        setTimeout(() => {
+                            this.router.navigate(['/admin/products/list']);
+                        }, 1000)
+                    },
+                    (err) => {
+                        console.log(err)
+                    },
+                )
+        };
     }
 
 }

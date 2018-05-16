@@ -12,11 +12,10 @@ import {ProductModel} from '../product.model';
 })
 export class ProductsListComponent implements OnInit {
 
-    products: Array<ProductModel> = [];
-    rows = [];
+    products: Array<any>;
     columns = [
         {name: 'name', label: 'Tên sản phẩm'},
-        {name: 'price', label: 'Giá',  width: 20},
+        {name: 'price', label: 'Giá (nghìn VND)',  width: 20},
         {name: 'brand', label: 'Thương hiệu'},
         {name: 'inStock', label: 'Số lượng', width: 20},
     ];
@@ -30,21 +29,6 @@ export class ProductsListComponent implements OnInit {
             (res) => {console.log(res); this.products = res.data},
             (err) => {console.log(err)},
         )
-        this.fetch((data) => {
-            this.rows = data;
-        });
-
-    }
-
-    fetch(cb) {
-        const req = new XMLHttpRequest();
-        req.open('GET', `assets/data/products.json`);
-
-        req.onload = () => {
-            cb(JSON.parse(req.response));
-        };
-
-        req.send();
     }
 
     add(e) {
@@ -52,7 +36,7 @@ export class ProductsListComponent implements OnInit {
     }
 
     edit(e) {
-        this.router.navigate(['admin/products/edit', e.id]);
+        this.router.navigate(['admin/products/edit', e._id]);
     }
 
     delete(e) {

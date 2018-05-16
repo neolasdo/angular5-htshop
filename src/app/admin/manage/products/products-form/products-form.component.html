@@ -64,24 +64,27 @@
                                 <button type="button" class="btn btn-success pull-right" (click)="addAttributes()" [disabled]="!canAddAtributes()">
                                     <i class="fa fa-plus"></i> Thêm
                                 </button>
-                                <div class="row" *ngIf="product.attributes.length">
+                                <div class="row" *ngIf="product.attributes && product.attributes.length">
                                     <div class="col-md-12" *ngFor="let item of product.attributes ; index as i" >
                                         <div class="row">
-                                            <div class="col-sm-4 form-group">
+                                            <div class="col-sm-3 form-group">
                                                 <label for="">Thuộc tính</label>
-                                                <select class="form-control" ([ngModel])="product.attributes[i].type" name="attributes[i].type">
+                                                <select class="form-control" ([ngModel])="product.attribute[i].type" name="attributes[i].type">
                                                     <option *ngFor="let op of attributes" value="op.type">{{op.name}}</option>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-4 form-group">
+                                            <div class="col-sm-3 form-group">
                                                 <label for="">Giá trị</label>
                                                 <select class="form-control" ([ngModel])="product.attributes[i].value" name="attributes[i].value">
                                                     <option *ngFor="let op of [1,2,3,4,5]" value="op">{{op}}</option>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-4 form-group">
+                                            <div class="col-sm-3 form-group">
                                                 <label for="">Giá riêng (VND)</label>
                                                 <input type="number" class="form-control" min="1000" ([ngModel])="product.attributes[i].price" name="attributes[i].price">
+                                            </div>
+                                            <div class="col-sm-3 form-group">
+                                                <button class="btn btn-danger" type="button" (click)="removeAttribute(i)"><i class="fa fa-trash"></i></button>
                                             </div>
                                             <hr>
                                         </div>
