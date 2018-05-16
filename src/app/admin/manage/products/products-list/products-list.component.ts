@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ApiService} from '../../../../shared';
+import {ProductModel} from '../product.model';
 
 
 
@@ -11,6 +12,7 @@ import {ApiService} from '../../../../shared';
 })
 export class ProductsListComponent implements OnInit {
 
+    products: Array<ProductModel> = [];
     rows = [];
     columns = [
         {name: 'name', label: 'Tên sản phẩm'},
@@ -23,17 +25,15 @@ export class ProductsListComponent implements OnInit {
     }
 
     ngOnInit() {
-        let products;
         this.apiService.get('/products')
         .subscribe(
-            (res) => {products = res.data}, 
-            (err) => {console.log(err)}, 
+            (res) => {console.log(res); this.products = res.data},
+            (err) => {console.log(err)},
         )
         this.fetch((data) => {
             this.rows = data;
         });
 
-        console.log(products);
     }
 
     fetch(cb) {

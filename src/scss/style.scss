@@ -11,7 +11,12 @@
 
 // Import Bootstrap source files
 @import "node_modules/bootstrap/scss/bootstrap";
-
+@import "~ngx-toastr/toastr.css";
+@import "~ngx-toastr/toastr-bs4-alert";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~ngx-toastr/toastr-bs4-alert";
 // Override core variables
 @import "core-variables";
 

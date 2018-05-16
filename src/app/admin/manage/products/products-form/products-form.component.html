@@ -29,11 +29,64 @@
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <label for="">Giá sản phẩm (VND)</label>
-                                <input type="number" required min="1000" class="form-control" [(ngModel)]="product.price">
+                                <input type="number" required min="1000" name="price" class="form-control" [(ngModel)]="product.price">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label for="">Giá sale (VND)</label>
-                                <input type="number" min="1000" [max]="product.price"  class="form-control" [(ngModel)]="product.salePrice">
+                                <input type="number" min="1000" [max]="product.price" name="salePrice" class="form-control" [(ngModel)]="product.salePrice">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="">Tags</label>
+                                <tag-input [modelAsStrings]="true" name="tags" [(ngModel)]="product.tags"></tag-input>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="">Số lượng</label>
+                                <input type="number" min="0" name="inStock" class="form-control" [(ngModel)]="product.inStock">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="">Từ khóa</label>
+                                <tag-input [modelAsStrings]="true" name="metaKey" [(ngModel)]="product.metaKey"></tag-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="">Mô tả ngắn</label>
+                                <textarea class="form-control" name="metaDesc" [(ngModel)]="product.metaDesc"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="">Thuộc tính sản phẩm</label>
+                                <button type="button" class="btn btn-success pull-right" (click)="addAttributes()" [disabled]="!canAddAtributes()">
+                                    <i class="fa fa-plus"></i> Thêm
+                                </button>
+                                <div class="row" *ngIf="product.attributes.length">
+                                    <div class="col-md-12" *ngFor="let item of product.attributes ; index as i" >
+                                        <div class="row">
+                                            <div class="col-sm-4 form-group">
+                                                <label for="">Thuộc tính</label>
+                                                <select class="form-control" ([ngModel])="product.attributes[i].type" name="attributes[i].type">
+                                                    <option *ngFor="let op of attributes" value="op.type">{{op.name}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-4 form-group">
+                                                <label for="">Giá trị</label>
+                                                <select class="form-control" ([ngModel])="product.attributes[i].value" name="attributes[i].value">
+                                                    <option *ngFor="let op of [1,2,3,4,5]" value="op">{{op}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-4 form-group">
+                                                <label for="">Giá riêng (VND)</label>
+                                                <input type="number" class="form-control" min="1000" ([ngModel])="product.attributes[i].price" name="attributes[i].price">
+                                            </div>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
