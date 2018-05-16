@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ApiService} from '../../../../shared';
+import {ProductModel} from '../product.model';
 
 
 
@@ -11,29 +12,28 @@ import {ApiService} from '../../../../shared';
 })
 export class ProductsListComponent implements OnInit {
 
+    products: Array<ProductModel> = [];
     rows = [];
     columns = [
         {name: 'name', label: 'Tên sản phẩm'},
-        {name: 'price', label: 'Giá',  width: '100'},
+        {name: 'price', label: 'Giá',  width: 20},
         {name: 'brand', label: 'Thương hiệu'},
-        {name: 'inStock', label: 'Số lượng', width: '100'},
+        {name: 'inStock', label: 'Số lượng', width: 20},
     ];
 
     constructor(private router: Router, private apiService: ApiService) {
     }
 
     ngOnInit() {
-        let products;
         this.apiService.get('/products')
         .subscribe(
-            (res) => {products = res.data}, 
-            (err) => {console.log(err)}, 
+            (res) => {console.log(res); this.products = res.data},
+            (err) => {console.log(err)},
         )
         this.fetch((data) => {
             this.rows = data;
         });
 
-        console.log(products);
     }
 
     fetch(cb) {
@@ -53,6 +53,12 @@ export class ProductsListComponent implements OnInit {
 
     edit(e) {
         this.router.navigate(['admin/products/edit', e.id]);
+    }
+
+    delete(e) {
+        if (window.confirm('Bạn có chắc muốn xóa sản phẩm này?')) {
+
+        }
     }
 
     removeAll(e) {

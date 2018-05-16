@@ -39,6 +39,11 @@ export const navigation = [
         icon: 'fa fa-shopping-bag',
     },
     {
+        name: 'Thuộc tính sản phẩm',
+        url: '/admin/attributes',
+        icon: 'fa fa-cog',
+    },
+    {
         name: 'Khách hàng',
         url: '/admin/customers',
         icon: 'fa fa-user-o',

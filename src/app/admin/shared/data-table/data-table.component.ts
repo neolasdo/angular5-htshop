@@ -16,13 +16,14 @@ export class DataTableComponent implements OnInit, OnChanges {
     @Input() showStatus: Boolean = true;
     @Input() showFooter: Boolean = true;
     @Input() showFilter: Boolean = true;
-    @Input() showCheckbox: Boolean = true;
-    @Input() canRemoveAll: Boolean = true;
+    @Input() showCheckbox: Boolean = false;
+    @Input() canRemoveAll: Boolean = false;
     limit: Number = 10;
     data: Array<any> = this.rows;
     temp = [];
     selected = [];
     @Output() editItem = new EventEmitter<any>();
+    @Output() deleteItem = new EventEmitter<any>();
     @Output() addItem = new EventEmitter<any>();
     @Output() removeAllItem = new EventEmitter<any>();
     @Output() changeStatus = new EventEmitter<any>();
@@ -61,6 +62,10 @@ export class DataTableComponent implements OnInit, OnChanges {
 
     edit(item) {
         this.editItem.emit(item);
+    }
+
+    delete(item) {
+        this.deleteItem.emit(item);
     }
 
     add(e) {

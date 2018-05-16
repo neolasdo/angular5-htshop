@@ -32,6 +32,7 @@ const routes: Routes = [
             {path: 'products', loadChildren: './manage/products/products.module#ProductsModule', },
             {path: 'customers', loadChildren: './manage/customers/customers.module#CustomersModule', },
             {path: 'users', loadChildren: './manage/users/users.module#UsersModule', },
+            {path: 'attributes', loadChildren: './manage/attributes/attributes.module#AttributesModule', },
         ]
     },
 ];
