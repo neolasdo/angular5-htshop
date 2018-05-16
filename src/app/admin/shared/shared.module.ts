@@ -3,19 +3,22 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {BsDropdownModule} from 'ngx-bootstrap';
 import {DataTableModule} from './data-table/data-table.module';
+import {QuillEditorModule} from 'ngx-quill-editor/index';
 
 @NgModule({
     imports: [
         CommonModule,
         DataTableModule,
+        BsDropdownModule,
         FormsModule,
-        BsDropdownModule
+        QuillEditorModule
     ],
     declarations: [],
     exports: [
         DataTableModule,
+        BsDropdownModule,
         FormsModule,
-        BsDropdownModule
+        QuillEditorModule
     ]
 })
 export class SharedModule {

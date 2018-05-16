@@ -12,6 +12,9 @@ import {ApiService} from '../../../../shared/index';
 export class ProductsFormComponent implements OnInit {
     @ViewChild('f') form: any;
     product: ProductModel;
+    public editorOptions = {
+        placeholder: 'Thêm mô tả sản phẩm'
+    };
 
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute, 
@@ -23,7 +26,7 @@ export class ProductsFormComponent implements OnInit {
             this.product = new ProductModel();
         }
         else  {
-            
+            this.product = new ProductModel();
         }
     }
 

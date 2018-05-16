@@ -1,3 +1,56 @@
 <div class="animated fadeIn">
-{{role}}
+    <form #f="ngForm" (submit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-8 col-sm-9">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Thông tin sản phẩm</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>Tên sản phẩm</label>
+                                <input type="text" name="name" class="form-control" [(ngModel)]="product.name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="">Thương hiệu</label>
+                                <input type="text" name="brand" class="form-control" [(ngModel)]="product.brand">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="">Mô tả</label>
+                                <div class="editor">
+                                    <quill-editor name="description" [(ngModel)]="product.description"
+                                                  [options]="editorOptions"></quill-editor>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="">Giá sản phẩm (VND)</label>
+                                <input type="number" min="1000" class="form-control" [(ngModel)]="product.price">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="">Giá sale (VND)</label>
+                                <input type="number" min="1000" [max]="product.price"  class="form-control" [(ngModel)]="product.salePrice">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Thông tin khác</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-right">
+                            <button class="btn btn-success" type="submit">Lưu sản phẩm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>

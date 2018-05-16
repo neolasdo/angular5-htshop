@@ -5,18 +5,14 @@ import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app.routing';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
 
 import {AppInterceptorService , AuthGuard, AuthService, JwtService, ApiService, HttpClientService} from './shared';
-
 
 @NgModule({
     imports: [
         BrowserModule,
         AppRoutingModule,
-        HttpClientModule,
-        FormsModule
+        HttpClientModule
     ],
     declarations: [
         AppComponent,
