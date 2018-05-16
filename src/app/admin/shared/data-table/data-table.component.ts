@@ -23,6 +23,7 @@ export class DataTableComponent implements OnInit, OnChanges {
     temp = [];
     selected = [];
     @Output() editItem = new EventEmitter<any>();
+    @Output() deleteItem = new EventEmitter<any>();
     @Output() addItem = new EventEmitter<any>();
     @Output() removeAllItem = new EventEmitter<any>();
     @Output() changeStatus = new EventEmitter<any>();
@@ -61,6 +62,10 @@ export class DataTableComponent implements OnInit, OnChanges {
 
     edit(item) {
         this.editItem.emit(item);
+    }
+
+    delete(item) {
+        this.deleteItem.emit(item);
     }
 
     add(e) {

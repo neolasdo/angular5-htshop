@@ -11,13 +11,14 @@ import {ApiService} from '../../../../shared/index';
 })
 export class ProductsFormComponent implements OnInit {
     @ViewChild('f') form: any;
+    method: String = 'POST';
     product: ProductModel;
     public editorOptions = {
         placeholder: 'Thêm mô tả sản phẩm'
     };
 
     constructor(private router: Router,
-                private activatedRoute: ActivatedRoute, 
+                private activatedRoute: ActivatedRoute,
                 private apiService: ApiService) { }
 
     ngOnInit() {
@@ -26,10 +27,14 @@ export class ProductsFormComponent implements OnInit {
             this.product = new ProductModel();
         }
         else  {
+            this.method = 'PUT';
             this.product = new ProductModel();
         }
     }
 
-    onSubmit() {}
+    onSubmit() {
+        if (this.method === 'POST') {};
+        if (this.method === 'PUT') {};
+    }
 
 }

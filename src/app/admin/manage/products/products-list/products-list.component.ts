@@ -14,9 +14,9 @@ export class ProductsListComponent implements OnInit {
     rows = [];
     columns = [
         {name: 'name', label: 'Tên sản phẩm'},
-        {name: 'price', label: 'Giá',  width: '100'},
+        {name: 'price', label: 'Giá',  width: 20},
         {name: 'brand', label: 'Thương hiệu'},
-        {name: 'inStock', label: 'Số lượng', width: '100'},
+        {name: 'inStock', label: 'Số lượng', width: 20},
     ];
 
     constructor(private router: Router, private apiService: ApiService) {
@@ -53,6 +53,12 @@ export class ProductsListComponent implements OnInit {
 
     edit(e) {
         this.router.navigate(['admin/products/edit', e.id]);
+    }
+
+    delete(e) {
+        if (window.confirm('Bạn có chắc muốn xóa sản phẩm này?')) {
+
+        }
     }
 
     removeAll(e) {
