@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ApiService} from '../../../../shared';
 import {ProductModel} from '../product.model';
+import {ToastrService} from 'ngx-toastr';
 
 
 
@@ -20,17 +21,19 @@ export class ProductsListComponent implements OnInit {
         {name: 'inStock', label: 'Số lượng', width: 20},
     ];
 
-    constructor(private router: Router, private apiService: ApiService) {
+    constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     }
 
     ngOnInit() {
-        this.apiService.get('/products')
-        .subscribe(
-            (res) => {console.log(res); this.products = res.data},
-            (err) => {console.log(err)},
-        )
+        this.getlist();
     }
-
+    getlist() {
+        this.apiService.get('/products')
+            .subscribe(
+                (res) => {console.log(res); this.products = res.data},
+                (err) => {console.log(err)},
+            )
+    }
     add(e) {
         this.router.navigate(['admin/products/add']);
     }
@@ -41,7 +44,14 @@ export class ProductsListComponent implements OnInit {
 
     delete(e) {
         if (window.confirm('Bạn có chắc muốn xóa sản phẩm này?')) {
-
+            this.apiService.delete(`/product/${e._id}`)
+                .subscribe(
+                    (res) => {
+                        this.toastr.success('Tạo sản phẩm thành công');
+                        this.getlist()
+                    },
+                    (err) => {console.log(err)},
+                )
         }
     }
 
