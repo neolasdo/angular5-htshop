@@ -47,7 +47,7 @@ export class ProductsListComponent implements OnInit {
             this.apiService.delete(`/product/${e._id}`)
                 .subscribe(
                     (res) => {
-                        this.toastr.success('Tạo sản phẩm thành công');
+                        this.toastr.success('Xóa sản phẩm thành công');
                         this.getlist()
                     },
                     (err) => {console.log(err)},
