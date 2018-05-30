@@ -42,8 +42,7 @@ export class ProductsFormComponent implements OnInit {
         let id = this.activatedRoute.snapshot.paramMap.get('id');
         if (!id) {
             this.product = new ProductModel();
-        }
-        else {
+        } else {
             this.method = 'PUT';
             this.apiService.get(`/product/5afc3ad6fee0331098cfe857`)
                 .subscribe(
@@ -52,7 +51,7 @@ export class ProductsFormComponent implements OnInit {
                     },
                     (err) => {
                         console.log(err)
-                    }    
+                    }
                 )
             this.product = new ProductModel();
         }

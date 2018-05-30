@@ -19,7 +19,7 @@ export class DataTableComponent implements OnInit, OnChanges {
     @Input() showCheckbox: Boolean = false;
     @Input() canRemoveAll: Boolean = false;
     limit: Number = 10;
-    data: Array<any> = [];
+    data: Array<any> = new Array <any> ();
     temp = [];
     selected = [];
     @Output() editItem = new EventEmitter<any>();
