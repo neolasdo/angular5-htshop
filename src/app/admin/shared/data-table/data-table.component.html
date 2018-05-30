@@ -63,10 +63,10 @@
               let-curPage="curPage"
               let-offset="offset">
         <div class="col-md-6">
-          <button class="btn btn-default remove-all" (click)="removeAll()" *ngIf="canRemoveAll && showFooter">
+          <button class="btn btn-default remove-all" (click)="removeAll($event)" *ngIf="canRemoveAll && showFooter">
             Remove all
           </button>
-          <span>Show {{ ((curPage-1) * limit )+ 1 }} to {{(curPage * limit <=data.length)? (curPage * limit): (data.length) }} of {{data.length}} entries</span>
+          <span>Show {{ ((curPage-1) * limit )+ 1 }} to {{(curPage * limit <=(data?data.length:0))? (curPage * limit): (data?data.length:0) }} of {{data?data.length:0}} entries</span>
         </div>
         <app-table-pager
                 class="col-md-6 text-right"
@@ -76,8 +76,8 @@
                 [pagerNextIcon]="'datatable-icon-skip'"
                 [page]="curPage"
                 [size]="limit"
-                [count]="data.length"
-                [hidden]="!((data.length / pageSize) > 1)"
+                [count]="data?data.length:0"
+                [hidden]="!(((data?data.length:0) / pageSize) > 1)"
                 (change)="table.onFooterPage($event)">
         </app-table-pager>
       </ng-template>
