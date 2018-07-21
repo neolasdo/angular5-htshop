@@ -11,7 +11,7 @@ import {ProductModel} from '../product.model';
     styleUrls: ['./products-list.component.scss']
 })
 export class ProductsListComponent implements OnInit {
-
+    loading = false;
     products: Array<any>;
     columns = [
         {name: 'name', label: 'Tên sản phẩm'},
@@ -24,10 +24,11 @@ export class ProductsListComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.loading = true;
         this.apiService.get('/products')
         .subscribe(
-            (res) => {console.log(res); this.products = res.data},
-            (err) => {console.log(err)},
+            (res) => {this.products = res.data; this.loading = false;},
+            (err) => {console.log(err); this.loading = false},
         )
     }
 

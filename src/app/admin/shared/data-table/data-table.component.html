@@ -66,9 +66,9 @@
           <button class="btn btn-default remove-all" (click)="removeAll()" *ngIf="canRemoveAll && showFooter">
             Remove all
           </button>
-          <span>Show {{ ((curPage-1) * limit )+ 1 }} to {{(curPage * limit <=data.length)? (curPage * limit): (data.length) }} of {{data.length}} entries</span>
+          <span *ngIf="data">Show {{ ((curPage-1) * limit )+ 1 }} to {{(curPage * limit <= data.length)? (curPage * limit): (data.length) }} of {{data.length}} entries</span>
         </div>
-        <app-table-pager
+        <app-table-pager *ngIf="data"
                 class="col-md-6 text-right"
                 [pagerLeftArrowIcon]="'datatable-icon-left'"
                 [pagerRightArrowIcon]="'datatable-icon-right'"

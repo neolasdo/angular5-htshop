@@ -1,3 +1,12 @@
-<p>
-  categories-list works!
-</p>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+
+<app-data-table
+        [rows]="categories"
+        [columns]="columns"
+        (addItem)="add($event)"
+        (editItem)="edit($event)"
+        (deleteItem)="delete($event)"
+        (removeAllItem)="removeAll($event)"
+        (changeStatus)="changeStatus($event)"
+>
+</app-data-table>

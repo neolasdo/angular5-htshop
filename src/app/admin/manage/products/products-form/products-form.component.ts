@@ -1,8 +1,12 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProductModel} from '../product.model';
 import {ApiService} from '../../../../shared/index';
 import {ToastrService} from 'ngx-toastr';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+
+
 
 
 @Component({
@@ -14,6 +18,10 @@ export class ProductsFormComponent implements OnInit {
     @ViewChild('f') form: any;
     method: String = 'POST';
     product: ProductModel;
+    categories: Array<any>;
+    bsModalRef: BsModalRef;
+    public loading = false;
+
     attributes: Array<any> = [
         {
             type: 'color',
@@ -35,17 +43,19 @@ export class ProductsFormComponent implements OnInit {
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,
                 private apiService: ApiService,
-                private toastr: ToastrService) {
+                private toastr: ToastrService,
+                private modalService: BsModalService) {
     }
 
     ngOnInit() {
+        this.loading = true;
         let id = this.activatedRoute.snapshot.paramMap.get('id');
         if (!id) {
             this.product = new ProductModel();
         }
         else {
             this.method = 'PUT';
-            this.apiService.get(`/product/5afc3ad6fee0331098cfe857`)
+            this.apiService.get(`/product/`+id)
                 .subscribe(
                     (res) => {
                         this.product = res.data;
@@ -56,10 +66,22 @@ export class ProductsFormComponent implements OnInit {
                 )
             this.product = new ProductModel();
         }
+
+         this.apiService.get('/categories')
+        .subscribe(
+            (res) => {
+                this.loading = false;
+                this.categories = res.data
+            },
+            (err) => {console.log(err);this.loading = false;},
+        )
     }
 
     addAttributes() {
         this.product.attributes.push({ });
+    }
+    openModal(template: TemplateRef<any>) {
+        this.bsModalRef = this.modalService.show(template);
     }
 
     removeAttribute(i) {
@@ -75,19 +97,27 @@ export class ProductsFormComponent implements OnInit {
         }
         return true;
     }
+    onChangeCategorySelect(event) {
+        let value = event.target.value;
+
+        this.product.category = value;
+    }
 
     onSubmit() {
         console.log(this.product);
+        this.loading = true;
         if (this.method === 'POST') {
-            this.apiService.post('/product', {product: this.product})
+            this.apiService.post('/products', {product: this.product})
                 .subscribe(
                     (res) => {
+                        this.loading = false;
                         this.toastr.success('Tạo sản phẩm thành công');
                         setTimeout(() => {
                             this.router.navigate(['/admin/products/list']);
                         }, 1000)
                     },
                     (err) => {
+                        this.loading = false;
                         console.log(err)
                     },
                 )
@@ -96,12 +126,14 @@ export class ProductsFormComponent implements OnInit {
             this.apiService.put(`/product/${this.product._id}`, {product: this.product})
                 .subscribe(
                     (res) => {
+                        this.loading = false;
                         this.toastr.success('Đã cập nhật sản phẩm');
                         setTimeout(() => {
                             this.router.navigate(['/admin/products/list']);
                         }, 1000)
                     },
                     (err) => {
+                        this.loading = false;
                         console.log(err)
                     },
                 )

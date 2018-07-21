@@ -1,3 +1,55 @@
-<p>
-  categories-form works!
-</p>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+
+<div class="animated fadeIn">
+    <form #f="ngForm" (submit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="card">
+                	<div class="card-header">
+                		<h4>Thông tin danh mục</h4>
+                	</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="required">Tên danh mục</label>
+                                <input type="text" required name="name" class="form-control" [(ngModel)]="category.name">
+                            </div>
+                        </div>
+                        <div class="row">
+                        	<div class="form-group col-md-12">
+                                <label class="required" for="">Đường dẫn tĩnh</label>
+                                <input type="text" name="slug" class="form-control" [(ngModel)]="category.slug">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="">Từ khóa</label>
+                                <tag-input [modelAsStrings]="true" name="metaKey" [(ngModel)]="category.metaKey"></tag-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="">Mô tả ngắn</label>
+                                <textarea class="form-control" name="metaDesc" [(ngModel)]="category.metaDesc"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                    	<div class="row">
+	                    	<div class="col-sm-6">
+	                    		<div class="text-left">
+			                        <button class="btn btn-default" type="button" (click)="cancer()">Hủy</button>
+			                    </div>
+	                    	</div>
+	                    	<div class="col-sm-6">
+	                    		<div class="text-right">
+			                        <button class="btn btn-success" [disabled]="form.invalid" type="submit">Lưu danh mục</button>
+			                    </div>
+	                    	</div>
+	                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
