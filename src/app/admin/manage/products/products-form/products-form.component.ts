@@ -103,7 +103,6 @@ export class ProductsFormComponent implements OnInit {
     }
 
     onSubmit() {
-        console.log(this.product);
         this.loading = true;
         if (this.method === 'POST') {
             this.apiService.post('/products', {product: this.product})
@@ -117,7 +116,7 @@ export class ProductsFormComponent implements OnInit {
                     },
                     (err) => {
                         this.loading = false;
-                        console.log(err)
+                        this.toastr.warning(err);
                     },
                 )
         };
@@ -133,7 +132,7 @@ export class ProductsFormComponent implements OnInit {
                     },
                     (err) => {
                         this.loading = false;
-                        console.log(err)
+                        this.toastr.warning(err);
                     },
                 )
         };
