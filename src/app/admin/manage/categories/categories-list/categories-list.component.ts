@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 import {ApiService} from '../../../../shared';
 
 @Component({
@@ -16,13 +17,19 @@ export class CategoriesListComponent implements OnInit {
         {name: 'createdAt', label: 'Ngày tạo'}
     ];
 	
-    constructor(private router: Router, private apiService: ApiService) {
+    constructor(private router: Router,
+                private toastr: ToastrService,
+                private apiService: ApiService) {
     }
 
 
 	ngOnInit() {
+        this.getList();
+	}
+
+    getList() {
         this.loading = true;
-		 this.apiService.get('/categories')
+        this.apiService.get('/categories')
         .subscribe(
             (res) => {
                 this.loading = false;
@@ -33,8 +40,7 @@ export class CategoriesListComponent implements OnInit {
             },
             (err) => {this.loading = false;console.log(err)},
         )
-	}
-
+    }
     add(e) {
         this.router.navigate(['admin/categories/add']);
     }
@@ -45,7 +51,16 @@ export class CategoriesListComponent implements OnInit {
 
     delete(e) {
         if (window.confirm('Bạn có chắc muốn xóa danh mục này?')) {
-
+                this.loading = true;
+                this.apiService.delete(`/category/${e._id}`)
+                .subscribe(
+                    (res) => {
+                        this.loading = false;
+                        this.toastr.success('Xóa danh mục thành công');
+                        this.getList()
+                    },
+                    (err) => {console.log(err); this.loading = false;},
+                )
         }
     }
 

@@ -45,13 +45,15 @@ export class ProductsListComponent implements OnInit {
 
     delete(e) {
         if (window.confirm('Bạn có chắc muốn xóa sản phẩm này?')) {
+            this.loading = true;
             this.apiService.delete(`/product/${e._id}`)
                 .subscribe(
                     (res) => {
-                        this.toastr.success('Tạo sản phẩm thành công');
+                        this.loading = false;
+                        this.toastr.success('Xóa sản phẩm thành công');
                         this.getlist()
                     },
-                    (err) => {console.log(err)},
+                    (err) => {console.log(err);this.loading = false;},
                 )
         }
     }
