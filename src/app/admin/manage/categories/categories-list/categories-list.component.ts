@@ -11,6 +11,15 @@ import {ApiService} from '../../../../shared';
 export class CategoriesListComponent implements OnInit {
     loading = false;
 	categories: Array<any>;
+    limit: Number = 10;
+    page: Number = 1;
+    keyword: String= '';
+    meta: any = {
+        limit: 10,
+        page: 1,
+        pages: 1,
+        total: 0
+    };
   	columns = [
         {name: 'name', label: 'Tên danh mục'},
         {name: 'slug', label: 'Đường dẫn tĩnh'},
@@ -29,14 +38,15 @@ export class CategoriesListComponent implements OnInit {
 
     getList() {
         this.loading = true;
-        this.apiService.get('/categories')
+        this.apiService.get('/categories', {'limit' : this.limit, 'keyword': this.keyword, 'page': this.page})
         .subscribe(
             (res) => {
-                this.loading = false;
                 this.categories = res.data.map((cat) => {
                      cat.createdAt = new Date(cat.createdAt).toISOString().split("T")[0];
                      return cat;
-                })
+                });
+                this.meta = res.meta;
+                this.loading = false;
             },
             (err) => {this.loading = false;console.log(err)},
         )
@@ -70,5 +80,15 @@ export class CategoriesListComponent implements OnInit {
 
     changeStatus(e) {
         console.log(e)
+    }
+    changePage(e) {
+        this.page = e.page;
+        this.getList();
+    }
+    filterChange(e) {
+        this.limit = e.perPage;
+        this.keyword = e.text;
+        this.page = 1;
+        this.getList();
     }
 }

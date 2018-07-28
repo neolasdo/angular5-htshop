@@ -3,10 +3,13 @@
 <app-data-table
         [rows]="categories"
         [columns]="columns"
+        [meta]="meta"
         (addItem)="add($event)"
         (editItem)="edit($event)"
         (deleteItem)="delete($event)"
         (removeAllItem)="removeAll($event)"
         (changeStatus)="changeStatus($event)"
+        (pageChange)="changePage($event)"
+        (filterChange)="filterChange($event)"
 >
 </app-data-table>

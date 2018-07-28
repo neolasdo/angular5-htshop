@@ -36,8 +36,8 @@
     </ngx-datatable-column>
 
     <ngx-datatable-column *ngFor="let column of columns" [name]="column.name" [sortable]="true" [canAutoResize]="true" [minWidth]="100" ([width])="column.width" [draggable]="true" [resizeable]="true">
-      <ng-template ngx-datatable-header-template let-sort="sortFn">
-        <span>{{ column.label?column.label:column.name }}</span>
+      <ng-template ngx-datatable-header-template>
+        <span (click)="sort(column)">{{ column.label?column.label:column.name }} <i *ngIf="column.canSort && sortBy === column.name" ></i></span>
       </ng-template>
     </ngx-datatable-column>
 
@@ -66,19 +66,19 @@
           <button class="btn btn-default remove-all" (click)="removeAll()" *ngIf="canRemoveAll && showFooter">
             Remove all
           </button>
-          <span *ngIf="data">Show {{ ((curPage-1) * limit )+ 1 }} to {{(curPage * limit <= data.length)? (curPage * limit): (data.length) }} of {{data.length}} entries</span>
+          <span *ngIf="metadata">Show {{ (metadata.page-1) * metadata.limit+ 1 }} to {{(metadata.page * metadata.limit <= metadata.total)? (metadata.page * metadata.limit): (metadata.total) }} of {{metadata.total}} entries</span>
         </div>
-        <app-table-pager *ngIf="data"
+        <app-table-pager *ngIf="metadata"
                 class="col-md-6 text-right"
                 [pagerLeftArrowIcon]="'datatable-icon-left'"
                 [pagerRightArrowIcon]="'datatable-icon-right'"
                 [pagerPreviousIcon]="'datatable-icon-prev'"
                 [pagerNextIcon]="'datatable-icon-skip'"
-                [page]="curPage"
-                [size]="limit"
-                [count]="data.length"
-                [hidden]="!((data.length / pageSize) > 1)"
-                (change)="table.onFooterPage($event)">
+                [page]="metadata.page"
+                [size]="metadata.limit"
+                [count]="metadata.total"
+                [hidden]="!((metadata.total / metadata.limit) > 1)"
+                (change)="changePage($event)">
         </app-table-pager>
       </ng-template>
     </ngx-datatable-footer>

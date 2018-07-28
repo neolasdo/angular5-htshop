@@ -14,6 +14,15 @@ import {ToastrService} from 'ngx-toastr';
 export class ProductsListComponent implements OnInit {
     loading = false;
     products: Array<any>;
+    limit: Number = 10;
+    page: Number = 1;
+    keyword: String= '';
+    meta: any = {
+        limit: 10,
+        page: 1,
+        pages: 1,
+        total: 0
+    };
     columns = [
         {name: 'name', label: 'Tên sản phẩm'},
         {name: 'price', label: 'Giá (nghìn VND)',  width: 20},
@@ -29,9 +38,12 @@ export class ProductsListComponent implements OnInit {
     }
     getlist() {
         this.loading = true;
-        this.apiService.get('/products')
+        this.apiService.get('/products', {'limit' : this.limit, 'keyword': this.keyword, 'page': this.page})
         .subscribe(
-            (res) => {this.products = res.data; this.loading = false;},
+            (res) => {
+                this.products = res.data; 
+                this.meta = res.meta; 
+                this.loading = false;},
             (err) => {console.log(err); this.loading = false},
         )
     }
@@ -64,5 +76,15 @@ export class ProductsListComponent implements OnInit {
 
     changeStatus(e) {
         console.log(e)
+    }
+    changePage(e) {
+        this.page = e.page;
+        this.getlist();
+    }
+    filterChange(e) {
+        this.limit = e.perPage;
+        this.keyword = e.text;
+        this.page = 1;
+        this.getlist();
     }
 }

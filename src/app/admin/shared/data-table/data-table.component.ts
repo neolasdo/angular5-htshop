@@ -18,11 +18,26 @@ export class DataTableComponent implements OnInit, OnChanges {
     @Input() showFilter: Boolean = true;
     @Input() showCheckbox: Boolean = false;
     @Input() canRemoveAll: Boolean = false;
+    @Input() meta: any = {
+        limit: 10,
+        page: 1,
+        pages: 1,
+        total: 0
+    };;
     limit: Number = 10;
+    sortBy: String = '';
     data: Array<any> = new Array <any> ();
+    metadata: any = {
+        limit: 10,
+        page: 1,
+        pages: 1,
+        total: 0
+    };
     temp = [];
     selected = [];
     @Output() editItem = new EventEmitter<any>();
+    @Output() filterChange = new EventEmitter<any>();
+    @Output() pageChange = new EventEmitter<any>();
     @Output() deleteItem = new EventEmitter<any>();
     @Output() addItem = new EventEmitter<any>();
     @Output() removeAllItem = new EventEmitter<any>();
@@ -34,10 +49,12 @@ export class DataTableComponent implements OnInit, OnChanges {
 
     ngOnInit() {
         this.data = this.rows;
+        this.metadata = this.meta;
     }
 
     ngOnChanges() {
         this.data = this.rows;
+        this.metadata = this.meta;
     }
 
     onSelect({selected}) {
@@ -46,18 +63,10 @@ export class DataTableComponent implements OnInit, OnChanges {
     }
 
     updateFilter(e) {
-        this.limit = e.perPage;
-        const val = e.text.toLowerCase();
-
-        // filter our data
-        const temp = this.rows.filter(function (d) {
-            return (!val || d.name.toLowerCase().indexOf(val) !== -1);
-        });
-
-        // update the rows
-        this.data = temp;
-        // Whenever the filter changes, always go back to the first page
-        this.table.offset = 0;
+        this.filterChange.emit(e);
+    }
+    changePage(e) {
+        this.pageChange.emit(e);
     }
 
     edit(item) {
@@ -83,4 +92,7 @@ export class DataTableComponent implements OnInit, OnChanges {
         });
     }
 
+    sort(column) {
+
+    }
 }

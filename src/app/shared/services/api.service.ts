@@ -23,7 +23,11 @@ export class ApiService {
         return new ErrorObservable(
             'Something bad happened; please try again later.');
     }
-    get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
+    get(path: string, parameters: object = {}): Observable<any> {
+        let params: HttpParams = new HttpParams();
+        for (let key in parameters) {
+            params = params.set(key, parameters[key]);
+        }
         return this.http.get(`${environment.api_url}${path}`, {params})
             .pipe(catchError(this.handleError));
     }

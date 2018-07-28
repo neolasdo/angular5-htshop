@@ -14,5 +14,4 @@ export class TablePagerComponent extends DataTablePagerComponent implements OnIn
 
   ngOnInit() {
   }
-
 }
